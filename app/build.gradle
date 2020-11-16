@@ -1,0 +1,82 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\ls\\Desktop\\TinkerTest.jks')
+            storePassword '123456'
+            keyAlias 'tinkerkey'
+            keyPassword '123456'
+        }
+        release {
+            storeFile file('C:\\Users\\ls\\Desktop\\TinkerTest.jks')
+            storePassword '123456'
+            keyAlias 'tinkerkey'
+            keyPassword '123456'
+        }
+    }
+    compileSdkVersion 29
+
+    defaultConfig {
+        applicationId "com.hwt.tinkertest2"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+        ndk {
+            abiFilters 'armeabi' , 'armeabi','x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation "androidx.multidex:multidex:2.0.1"
+//    //可选，用于生成application类
+//    annotationProcessor('com.tencent.tinker:tinker-android-anno:1.9.9') { changing = true }
+//    compileOnly("com.tinkerpatch.tinker:tinker-android-anno:1.9.9") { changing = true }
+//    //tinker的核心库
+//    implementation('com.tencent.tinker:tinker-android-lib:1.9.9') { changing = true }
+//    annotationProcessor("com.tinkerpatch.tinker:tinker-android-anno:1.9.9") { changing = true }
+//    compileOnly("com.tinkerpatch.tinker:tinker-android-anno:1.9.9") { changing = true }
+//    implementation("com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.9.9") { changing = true }
+
+    api("com.tencent.tinker:tinker-android-lib:1.9.9") { changing = true }
+    annotationProcessor("com.tencent.tinker:tinker-android-anno:1.9.9") { changing = true }
+    compileOnly("com.tencent.tinker:tinker-android-anno:1.9.9") { changing = true }
+
+}
+//apply tinker插件
+apply plugin: 'com.tencent.tinker.patch'
+
+apply from: 'tinker-support.gradle'
