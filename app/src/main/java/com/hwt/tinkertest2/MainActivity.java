@@ -28,5 +28,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        Toast.makeText(this,TestDelClass.getMyClassName(),Toast.LENGTH_SHORT).show();
     }
 }
