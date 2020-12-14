@@ -71,9 +71,9 @@ dependencies {
 //    compileOnly("com.tinkerpatch.tinker:tinker-android-anno:1.9.9") { changing = true }
 //    implementation("com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.9.9") { changing = true }
 
-    api("com.tencent.tinker:tinker-android-lib:1.9.9") { changing = true }
-    annotationProcessor("com.tencent.tinker:tinker-android-anno:1.9.9") { changing = true }
-    compileOnly("com.tencent.tinker:tinker-android-anno:1.9.9") { changing = true }
+    api("com.tencent.tinker:tinker-android-lib:1.9.14") { changing = true }
+    annotationProcessor("com.tencent.tinker:tinker-android-anno:1.9.14") { changing = true }
+    compileOnly("com.tencent.tinker:tinker-android-anno:1.9.14") { changing = true }
 
 }
 //apply tinker插件
